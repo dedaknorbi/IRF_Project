@@ -14,7 +14,7 @@ namespace Homeoffice_Decider
     public partial class Form1 : Form
     {
         UgynokEntities context = new UgynokEntities();
-        List<Agent> Agents;
+        List<Ugynokok> Agents;
         public Form1()
         {
             InitializeComponent();
