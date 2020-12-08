@@ -14,11 +14,19 @@ namespace Homeoffice_Decider
     public partial class Form1 : Form
     {
         UgynokEntities context = new UgynokEntities();
-        List<Ugynokok> Agents;
+        List<Ugynokok> Ugynokok;
+        List<Agent> Agents = new List<Agent>();
         public Form1()
         {
             InitializeComponent();
-            Agents = context.Ugynokoks.ToList();
+            Ugynokok = context.Ugynokoks.ToList();
+            foreach (var alkalmazott in Ugynokok)
+            {
+                Agents.Add(new Agent() { name = alkalmazott.nev, rank = alkalmazott.beosztas_fk});
+            }
+            int elemszám = Agents.Count();
+            MessageBox.Show(Convert.ToString(elemszám));
+
         }
     }
 }
