@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UgynokokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Beosztasok">
+          <Key>
+            <PropertyRef Name="beosztas_id" />
+          </Key>
+          <Property Name="beosztas_id" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Munkak">
+          <Key>
+            <PropertyRef Name="munka_sk" />
+          </Key>
+          <Property Name="munka_sk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ugynok_fk" Type="int" Nullable="false" />
+          <Property Name="dolgozott_orak" Type="int" />
+          <Property Name="megkotott_szerzodesek" Type="int" />
+        </EntityType>
+        <EntityType Name="Ugynokok">
+          <Key>
+            <PropertyRef Name="ugynok_sk" />
+          </Key>
+          <Property Name="ugynok_sk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nev" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="beosztas_fk" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Munkak_Ugynokok">
+          <End Role="Ugynokok" Type="Self.Ugynokok" Multiplicity="1" />
+          <End Role="Munkak" Type="Self.Munkak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugynokok">
+              <PropertyRef Name="ugynok_sk" />
+            </Principal>
+            <Dependent Role="Munkak">
+              <PropertyRef Name="ugynok_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ugynokok_Beosztasok">
+          <End Role="Beosztasok" Type="Self.Beosztasok" Multiplicity="1" />
+          <End Role="Ugynokok" Type="Self.Ugynokok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beosztasok">
+              <PropertyRef Name="beosztas_id" />
+            </Principal>
+            <Dependent Role="Ugynokok">
+              <PropertyRef Name="beosztas_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UgynokokModelStoreContainer">
+          <EntitySet Name="Beosztasok" EntityType="Self.Beosztasok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Munkak" EntityType="Self.Munkak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ugynokok" EntityType="Self.Ugynokok" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Munkak_Ugynokok" Association="Self.FK_Munkak_Ugynokok">
+            <End Role="Ugynokok" EntitySet="Ugynokok" />
+            <End Role="Munkak" EntitySet="Munkak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ugynokok_Beosztasok" Association="Self.FK_Ugynokok_Beosztasok">
+            <End Role="Beosztasok" EntitySet="Beosztasok" />
+            <End Role="Ugynokok" EntitySet="Ugynokok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UgynokokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Beosztasok">
+          <Key>
+            <PropertyRef Name="beosztas_id" />
+          </Key>
+          <Property Name="beosztas_id" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ugynokoks" Relationship="Self.FK_Ugynokok_Beosztasok" FromRole="Beosztasok" ToRole="Ugynokok" />
+        </EntityType>
+        <EntityType Name="Munkak">
+          <Key>
+            <PropertyRef Name="munka_sk" />
+          </Key>
+          <Property Name="munka_sk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ugynok_fk" Type="Int32" Nullable="false" />
+          <Property Name="dolgozott_orak" Type="Int32" />
+          <Property Name="megkotott_szerzodesek" Type="Int32" />
+          <NavigationProperty Name="Ugynokok" Relationship="Self.FK_Munkak_Ugynokok" FromRole="Munkak" ToRole="Ugynokok" />
+        </EntityType>
+        <EntityType Name="Ugynokok">
+          <Key>
+            <PropertyRef Name="ugynok_sk" />
+          </Key>
+          <Property Name="ugynok_sk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="beosztas_fk" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Beosztasok" Relationship="Self.FK_Ugynokok_Beosztasok" FromRole="Ugynokok" ToRole="Beosztasok" />
+          <NavigationProperty Name="Munkaks" Relationship="Self.FK_Munkak_Ugynokok" FromRole="Ugynokok" ToRole="Munkak" />
+        </EntityType>
+        <Association Name="FK_Ugynokok_Beosztasok">
+          <End Role="Beosztasok" Type="Self.Beosztasok" Multiplicity="1" />
+          <End Role="Ugynokok" Type="Self.Ugynokok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beosztasok">
+              <PropertyRef Name="beosztas_id" />
+            </Principal>
+            <Dependent Role="Ugynokok">
+              <PropertyRef Name="beosztas_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Munkak_Ugynokok">
+          <End Role="Ugynokok" Type="Self.Ugynokok" Multiplicity="1" />
+          <End Role="Munkak" Type="Self.Munkak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugynokok">
+              <PropertyRef Name="ugynok_sk" />
+            </Principal>
+            <Dependent Role="Munkak">
+              <PropertyRef Name="ugynok_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UgynokEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beosztasoks" EntityType="Self.Beosztasok" />
+          <EntitySet Name="Munkaks" EntityType="Self.Munkak" />
+          <EntitySet Name="Ugynokoks" EntityType="Self.Ugynokok" />
+          <AssociationSet Name="FK_Ugynokok_Beosztasok" Association="Self.FK_Ugynokok_Beosztasok">
+            <End Role="Beosztasok" EntitySet="Beosztasoks" />
+            <End Role="Ugynokok" EntitySet="Ugynokoks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Munkak_Ugynokok" Association="Self.FK_Munkak_Ugynokok">
+            <End Role="Ugynokok" EntitySet="Ugynokoks" />
+            <End Role="Munkak" EntitySet="Munkaks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UgynokokModelStoreContainer" CdmEntityContainer="UgynokEntities">
+          <EntitySetMapping Name="Beosztasoks">
+            <EntityTypeMapping TypeName="UgynokokModel.Beosztasok">
+              <MappingFragment StoreEntitySet="Beosztasok">
+                <ScalarProperty Name="beosztas_id" ColumnName="beosztas_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Munkaks">
+            <EntityTypeMapping TypeName="UgynokokModel.Munkak">
+              <MappingFragment StoreEntitySet="Munkak">
+                <ScalarProperty Name="munka_sk" ColumnName="munka_sk" />
+                <ScalarProperty Name="ugynok_fk" ColumnName="ugynok_fk" />
+                <ScalarProperty Name="dolgozott_orak" ColumnName="dolgozott_orak" />
+                <ScalarProperty Name="megkotott_szerzodesek" ColumnName="megkotott_szerzodesek" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ugynokoks">
+            <EntityTypeMapping TypeName="UgynokokModel.Ugynokok">
+              <MappingFragment StoreEntitySet="Ugynokok">
+                <ScalarProperty Name="ugynok_sk" ColumnName="ugynok_sk" />
+                <ScalarProperty Name="nev" ColumnName="nev" />
+                <ScalarProperty Name="beosztas_fk" ColumnName="beosztas_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
