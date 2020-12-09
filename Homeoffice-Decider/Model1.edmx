@@ -75,7 +75,7 @@
             <PropertyRef Name="beosztas_id" />
           </Key>
           <Property Name="beosztas_id" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ugynokoks" Relationship="Self.FK_Ugynokok_Beosztasok" FromRole="Beosztasok" ToRole="Ugynokok" />
+          <NavigationProperty Name="Ugynokok" Relationship="Self.FK_Ugynokok_Beosztasok" FromRole="Beosztasok" ToRole="Ugynokok" />
         </EntityType>
         <EntityType Name="Munkak">
           <Key>
@@ -95,7 +95,7 @@
           <Property Name="nev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="beosztas_fk" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Beosztasok" Relationship="Self.FK_Ugynokok_Beosztasok" FromRole="Ugynokok" ToRole="Beosztasok" />
-          <NavigationProperty Name="Munkaks" Relationship="Self.FK_Munkak_Ugynokok" FromRole="Ugynokok" ToRole="Munkak" />
+          <NavigationProperty Name="Munkak" Relationship="Self.FK_Munkak_Ugynokok" FromRole="Ugynokok" ToRole="Munkak" />
         </EntityType>
         <Association Name="FK_Ugynokok_Beosztasok">
           <End Role="Beosztasok" Type="Self.Beosztasok" Multiplicity="1" />
@@ -121,17 +121,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UgynokEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Beosztasoks" EntityType="Self.Beosztasok" />
-          <EntitySet Name="Munkaks" EntityType="Self.Munkak" />
-          <EntitySet Name="Ugynokoks" EntityType="Self.Ugynokok" />
+        <EntityContainer Name="Ugynokok1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beosztasok" EntityType="Self.Beosztasok" />
+          <EntitySet Name="Munkak" EntityType="Self.Munkak" />
+          <EntitySet Name="Ugynokok" EntityType="Self.Ugynokok" />
           <AssociationSet Name="FK_Ugynokok_Beosztasok" Association="Self.FK_Ugynokok_Beosztasok">
-            <End Role="Beosztasok" EntitySet="Beosztasoks" />
-            <End Role="Ugynokok" EntitySet="Ugynokoks" />
+            <End Role="Beosztasok" EntitySet="Beosztasok" />
+            <End Role="Ugynokok" EntitySet="Ugynokok" />
           </AssociationSet>
           <AssociationSet Name="FK_Munkak_Ugynokok" Association="Self.FK_Munkak_Ugynokok">
-            <End Role="Ugynokok" EntitySet="Ugynokoks" />
-            <End Role="Munkak" EntitySet="Munkaks" />
+            <End Role="Ugynokok" EntitySet="Ugynokok" />
+            <End Role="Munkak" EntitySet="Munkak" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -139,15 +139,15 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="UgynokokModelStoreContainer" CdmEntityContainer="UgynokEntities">
-          <EntitySetMapping Name="Beosztasoks">
+        <EntityContainerMapping StorageEntityContainer="UgynokokModelStoreContainer" CdmEntityContainer="Ugynokok1Entities">
+          <EntitySetMapping Name="Beosztasok">
             <EntityTypeMapping TypeName="UgynokokModel.Beosztasok">
               <MappingFragment StoreEntitySet="Beosztasok">
                 <ScalarProperty Name="beosztas_id" ColumnName="beosztas_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Munkaks">
+          <EntitySetMapping Name="Munkak">
             <EntityTypeMapping TypeName="UgynokokModel.Munkak">
               <MappingFragment StoreEntitySet="Munkak">
                 <ScalarProperty Name="munka_sk" ColumnName="munka_sk" />
@@ -157,7 +157,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ugynokoks">
+          <EntitySetMapping Name="Ugynokok">
             <EntityTypeMapping TypeName="UgynokokModel.Ugynokok">
               <MappingFragment StoreEntitySet="Ugynokok">
                 <ScalarProperty Name="ugynok_sk" ColumnName="ugynok_sk" />
@@ -180,7 +180,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

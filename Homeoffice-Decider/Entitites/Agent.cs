@@ -12,6 +12,6 @@ namespace Homeoffice_Decider.Entitites
         public string rank { get; set; }
         public int hours { get; set; }
         public int contracts { get; set; }
-
+        public decimal efficiency { get; set; }
     }
 }

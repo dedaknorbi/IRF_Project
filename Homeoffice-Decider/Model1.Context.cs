@@ -13,10 +13,10 @@ namespace Homeoffice_Decider
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UgynokEntities : DbContext
+    public partial class Ugynokok1Entities : DbContext
     {
-        public UgynokEntities()
-            : base("name=UgynokEntities")
+        public Ugynokok1Entities()
+            : base("name=Ugynokok1Entities")
         {
         }
     
@@ -25,8 +25,8 @@ namespace Homeoffice_Decider
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Beosztasok> Beosztasoks { get; set; }
-        public virtual DbSet<Munkak> Munkaks { get; set; }
-        public virtual DbSet<Ugynokok> Ugynokoks { get; set; }
+        public virtual DbSet<Beosztasok> Beosztasok { get; set; }
+        public virtual DbSet<Munkak> Munkak { get; set; }
+        public virtual DbSet<Ugynokok> Ugynokok { get; set; }
     }
 }

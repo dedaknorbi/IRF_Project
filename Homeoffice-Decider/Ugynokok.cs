@@ -17,7 +17,7 @@ namespace Homeoffice_Decider
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ugynokok()
         {
-            this.Munkaks = new HashSet<Munkak>();
+            this.Munkak = new HashSet<Munkak>();
         }
     
         public int ugynok_sk { get; set; }
@@ -26,6 +26,6 @@ namespace Homeoffice_Decider
     
         public virtual Beosztasok Beosztasok { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Munkak> Munkaks { get; set; }
+        public virtual ICollection<Munkak> Munkak { get; set; }
     }
 }

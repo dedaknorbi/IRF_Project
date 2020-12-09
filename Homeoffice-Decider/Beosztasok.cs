@@ -17,12 +17,12 @@ namespace Homeoffice_Decider
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Beosztasok()
         {
-            this.Ugynokoks = new HashSet<Ugynokok>();
+            this.Ugynokok = new HashSet<Ugynokok>();
         }
     
         public string beosztas_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ugynokok> Ugynokoks { get; set; }
+        public virtual ICollection<Ugynokok> Ugynokok { get; set; }
     }
 }
