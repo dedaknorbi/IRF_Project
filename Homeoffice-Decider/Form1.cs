@@ -15,17 +15,22 @@ namespace Homeoffice_Decider
     {
         UgynokEntities context = new UgynokEntities();
         List<Ugynokok> Ugynokok;
-        List<Agent> Agents = new List<Agent>();
+        BindingList<Agent> Agents = new BindingList<Agent>();
         public Form1()
         {
             InitializeComponent();
             Ugynokok = context.Ugynokoks.ToList();
             foreach (var alkalmazott in Ugynokok)
             {
-                Agents.Add(new Agent() { name = alkalmazott.nev, rank = alkalmazott.beosztas_fk});
+                Agents.Add(new Agent()
+                {
+                    name = alkalmazott.nev,
+                    rank = alkalmazott.beosztas_fk,
+                    hours =Convert.ToInt32((from x in context.Munkaks where alkalmazott.ugynok_sk == x.ugynok_fk select x.dolgozott_orak).FirstOrDefault()),
+                    contracts = Convert.ToInt32((from x in context.Munkaks where alkalmazott.ugynok_sk == x.ugynok_fk select x.megkotott_szerzodesek).FirstOrDefault())
+                }) ;
+                
             }
-            int elemszám = Agents.Count();
-            MessageBox.Show(Convert.ToString(elemszám));
 
         }
     }
