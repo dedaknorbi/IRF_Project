@@ -22,17 +22,16 @@ namespace Homeoffice_Decider
             Ugynokok = context.Ugynokok.ToList();
             foreach (var u in Ugynokok)
             {
-                int oraszam = Convert.ToInt32((from x in context.Munkak where u.ugynok_sk == x.ugynok_fk select x.dolgozott_orak).FirstOrDefault());
-                int szerzodesszam = Convert.ToInt32((from x in context.Munkak where u.ugynok_sk == x.ugynok_fk select x.megkotott_szerzodesek).FirstOrDefault());
-                //MessageBox.Show(Convert.ToString((from x in context.Munkak where alkalmazott.ugynok_sk == x.ugynok_fk select x.dolgozott_orak).FirstOrDefault()));
+                decimal oraszam = Convert.ToInt32((from x in context.Munkak where u.ugynok_sk == x.ugynok_fk select x.dolgozott_orak).FirstOrDefault());
+                decimal szerzodesszam = Convert.ToInt32((from x in context.Munkak where u.ugynok_sk == x.ugynok_fk select x.megkotott_szerzodesek).FirstOrDefault());
                 if (szerzodesszam == 0)
                 {
                     Agents.Add(new Agent()
                     {
                         name = u.nev,
                         rank = u.beosztas_fk,
-                        hours = oraszam,
-                        contracts = szerzodesszam,
+                        hours = Convert.ToInt32(oraszam),
+                        contracts = Convert.ToInt32(szerzodesszam),
                         //efficiency = 0
                     });
                 }
@@ -43,11 +42,10 @@ namespace Homeoffice_Decider
 
                         name = u.nev,
                         rank = u.beosztas_fk,
-                        hours = oraszam,
-                        contracts = szerzodesszam,
-                        efficiency = oraszam / szerzodesszam
+                        hours = Convert.ToInt32(oraszam),
+                        contracts = Convert.ToInt32(szerzodesszam),
+                        efficiency = Math.Round(oraszam / szerzodesszam, 2) 
                     });
-                    MessageBox.Show(Convert.ToString(oraszam / szerzodesszam));
                 }
             }
 
@@ -61,7 +59,7 @@ namespace Homeoffice_Decider
             {
                 if (Convert.ToInt32(dataGridView1[4,i].Value)==0)
                 {
-                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                 }
             }
         }
