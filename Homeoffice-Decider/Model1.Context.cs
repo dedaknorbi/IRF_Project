@@ -13,10 +13,10 @@ namespace Homeoffice_Decider
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Ugynokok1Entities : DbContext
+    public partial class UgynokokEntities1 : DbContext
     {
-        public Ugynokok1Entities()
-            : base("name=Ugynokok1Entities")
+        public UgynokokEntities1()
+            : base("name=UgynokokEntities1")
         {
         }
     

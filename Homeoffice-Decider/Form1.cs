@@ -13,44 +13,53 @@ namespace Homeoffice_Decider
 {
     public partial class Form1 : Form
     {
-        Ugynokok1Entities context = new Ugynokok1Entities();
+        UgynokokEntities1 context = new UgynokokEntities1();
         List<Ugynokok> Ugynokok;
         BindingList<Agent> Agents = new BindingList<Agent>();
         public Form1()
         {
             InitializeComponent();
+            ugynokadatfeltoltes();
+            dataGridView1.DataSource = Agents;
+            this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
+        }
+
+        private void ugynokadatfeltoltes()
+        {
             Ugynokok = context.Ugynokok.ToList();
             foreach (var u in Ugynokok)
             {
-                decimal oraszam = Convert.ToInt32((from x in context.Munkak where u.ugynok_sk == x.ugynok_fk select x.dolgozott_orak).FirstOrDefault());
-                decimal szerzodesszam = Convert.ToInt32((from x in context.Munkak where u.ugynok_sk == x.ugynok_fk select x.megkotott_szerzodesek).FirstOrDefault());
-                if (szerzodesszam == 0)
+                decimal h1= Convert.ToDecimal((from x in context.Munkak
+                                             where u.ugynok_sk == x.ugynok_fk
+                                             select x.h1_dolgozott_orak).FirstOrDefault());
+                decimal c1 = Convert.ToDecimal((from x in context.Munkak
+                                                where u.ugynok_sk == x.ugynok_fk
+                                                select x.h1_szerzodesek).FirstOrDefault());
+                decimal h2 = Convert.ToDecimal((from x in context.Munkak
+                                                where u.ugynok_sk == x.ugynok_fk
+                                                select x.h2_dolgozott_orak).FirstOrDefault());
+                decimal c2 = Convert.ToDecimal((from x in context.Munkak
+                                                where u.ugynok_sk == x.ugynok_fk
+                                                select x.h2_szerzodesek).FirstOrDefault());
+                decimal h3 = Convert.ToDecimal((from x in context.Munkak
+                                                where u.ugynok_sk == x.ugynok_fk
+                                                select x.h3_dolgozott_orak).FirstOrDefault());
+                decimal c3 = Convert.ToDecimal((from x in context.Munkak
+                                                where u.ugynok_sk == x.ugynok_fk
+                                                select x.h3_szerzodesek).FirstOrDefault());
+                Agents.Add(new Agent()
                 {
-                    Agents.Add(new Agent()
-                    {
-                        name = u.nev,
-                        rank = u.beosztas_fk,
-                        hours = Convert.ToInt32(oraszam),
-                        contracts = Convert.ToInt32(szerzodesszam),
-                        //efficiency = 0
-                    });
-                }
-                else
-                {
-                    Agents.Add(new Agent()
-                    {
-
-                        name = u.nev,
-                        rank = u.beosztas_fk,
-                        hours = Convert.ToInt32(oraszam),
-                        contracts = Convert.ToInt32(szerzodesszam),
-                        efficiency = Math.Round(oraszam / szerzodesszam, 2) 
-                    });
-                }
+                    name = u.nev,
+                    rank = u.beosztas_fk,
+                    h1_hours = Convert.ToInt32(h1),
+                    h1_contracts = Convert.ToInt32(c1),
+                    h2_hours = Convert.ToInt32(h2),
+                    h2_contracts = Convert.ToInt32(c2),
+                    h3_hours = Convert.ToInt32(h3),
+                    h3_contracts = Convert.ToInt32(c3),
+                    efficiency = Math.Round((h1 + h2 + h3)/100+((c1+c2+c3)/(h1+h2+h3))*100,2)
+                });
             }
-
-            dataGridView1.DataSource = Agents;
-            this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
         }
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)

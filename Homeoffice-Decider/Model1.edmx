@@ -17,8 +17,12 @@
           </Key>
           <Property Name="munka_sk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ugynok_fk" Type="int" Nullable="false" />
-          <Property Name="dolgozott_orak" Type="int" />
-          <Property Name="megkotott_szerzodesek" Type="int" />
+          <Property Name="h1_dolgozott_orak" Type="int" />
+          <Property Name="h1_szerzodesek" Type="int" />
+          <Property Name="h2_dolgozott_orak" Type="int" />
+          <Property Name="h2_szerzodesek" Type="int" />
+          <Property Name="h3_dolgozott_orak" Type="int" />
+          <Property Name="h3_szerzodesek" Type="int" />
         </EntityType>
         <EntityType Name="Ugynokok">
           <Key>
@@ -83,8 +87,12 @@
           </Key>
           <Property Name="munka_sk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ugynok_fk" Type="Int32" Nullable="false" />
-          <Property Name="dolgozott_orak" Type="Int32" />
-          <Property Name="megkotott_szerzodesek" Type="Int32" />
+          <Property Name="h1_dolgozott_orak" Type="Int32" />
+          <Property Name="h1_szerzodesek" Type="Int32" />
+          <Property Name="h2_dolgozott_orak" Type="Int32" />
+          <Property Name="h2_szerzodesek" Type="Int32" />
+          <Property Name="h3_dolgozott_orak" Type="Int32" />
+          <Property Name="h3_szerzodesek" Type="Int32" />
           <NavigationProperty Name="Ugynokok" Relationship="Self.FK_Munkak_Ugynokok" FromRole="Munkak" ToRole="Ugynokok" />
         </EntityType>
         <EntityType Name="Ugynokok">
@@ -121,7 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Ugynokok1Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="UgynokokEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Beosztasok" EntityType="Self.Beosztasok" />
           <EntitySet Name="Munkak" EntityType="Self.Munkak" />
           <EntitySet Name="Ugynokok" EntityType="Self.Ugynokok" />
@@ -139,7 +147,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="UgynokokModelStoreContainer" CdmEntityContainer="Ugynokok1Entities">
+        <EntityContainerMapping StorageEntityContainer="UgynokokModelStoreContainer" CdmEntityContainer="UgynokokEntities1">
           <EntitySetMapping Name="Beosztasok">
             <EntityTypeMapping TypeName="UgynokokModel.Beosztasok">
               <MappingFragment StoreEntitySet="Beosztasok">
@@ -152,8 +160,12 @@
               <MappingFragment StoreEntitySet="Munkak">
                 <ScalarProperty Name="munka_sk" ColumnName="munka_sk" />
                 <ScalarProperty Name="ugynok_fk" ColumnName="ugynok_fk" />
-                <ScalarProperty Name="dolgozott_orak" ColumnName="dolgozott_orak" />
-                <ScalarProperty Name="megkotott_szerzodesek" ColumnName="megkotott_szerzodesek" />
+                <ScalarProperty Name="h1_dolgozott_orak" ColumnName="h1_dolgozott_orak" />
+                <ScalarProperty Name="h1_szerzodesek" ColumnName="h1_szerzodesek" />
+                <ScalarProperty Name="h2_dolgozott_orak" ColumnName="h2_dolgozott_orak" />
+                <ScalarProperty Name="h2_szerzodesek" ColumnName="h2_szerzodesek" />
+                <ScalarProperty Name="h3_dolgozott_orak" ColumnName="h3_dolgozott_orak" />
+                <ScalarProperty Name="h3_szerzodesek" ColumnName="h3_szerzodesek" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,8 +16,12 @@ namespace Homeoffice_Decider
     {
         public int munka_sk { get; set; }
         public int ugynok_fk { get; set; }
-        public Nullable<int> dolgozott_orak { get; set; }
-        public Nullable<int> megkotott_szerzodesek { get; set; }
+        public Nullable<int> h1_dolgozott_orak { get; set; }
+        public Nullable<int> h1_szerzodesek { get; set; }
+        public Nullable<int> h2_dolgozott_orak { get; set; }
+        public Nullable<int> h2_szerzodesek { get; set; }
+        public Nullable<int> h3_dolgozott_orak { get; set; }
+        public Nullable<int> h3_szerzodesek { get; set; }
     
         public virtual Ugynokok Ugynokok { get; set; }
     }

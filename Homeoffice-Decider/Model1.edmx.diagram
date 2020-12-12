@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb9726fe0e25495da2ee16268092aa48" Name="Diagram1">
-        <EntityTypeShape EntityType="UgynokokModel.Beosztasok" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="UgynokokModel.Munkak" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="UgynokokModel.Ugynokok" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="8824a00561434b73a7e45c39adb12634" Name="Diagram1">
+        <EntityTypeShape EntityType="UgynokokModel.Beosztasok" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UgynokokModel.Munkak" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="UgynokokModel.Ugynokok" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="UgynokokModel.FK_Ugynokok_Beosztasok" ManuallyRouted="false" />
         <AssociationConnector Association="UgynokokModel.FK_Munkak_Ugynokok" ManuallyRouted="false" />
       </Diagram>
