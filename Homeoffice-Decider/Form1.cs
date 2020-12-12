@@ -157,11 +157,6 @@ namespace Homeoffice_Decider
                     }
                 }
             }
-
-            if (szuro == Szures.semmire)
-            {
-                ugynokadatfeltoltes();
-            }
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
