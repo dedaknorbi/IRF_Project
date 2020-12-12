@@ -17,5 +17,6 @@ namespace Homeoffice_Decider.Entitites
         public int h3_hours { get; set; }
         public int h3_contracts { get; set; }
         public decimal efficiency { get; set; }
+        public bool jutalom { get; set; }
     }
 }

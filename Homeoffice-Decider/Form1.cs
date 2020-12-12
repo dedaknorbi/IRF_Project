@@ -65,11 +65,20 @@ namespace Homeoffice_Decider
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
+            /*for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
             {
                 if (Convert.ToInt32(dataGridView1[4,i].Value)==0)
                 {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+                
+            }*/
+            for (int i = 0; i < Agents.Count; i++)
+            {
+                dataGridView1.Rows[i].DefaultCellStyle.BackColor = DefaultBackColor;
+                if (Agents[i].jutalom)
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
             }
         }
@@ -90,6 +99,28 @@ namespace Homeoffice_Decider
             {
                 ugynokadatfeltoltes();
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Agents.Count; i++)
+            {
+                Agents[i].jutalom = false;
+                int sorrend = 0;
+                for (int j = 0; j < Agents.Count; j++)
+                {
+                    if (Agents[i].efficiency < Agents[j].efficiency)
+                    {
+                        sorrend++;
+                    }      
+                }
+                if (sorrend < Convert.ToInt32(textBox1.Text))
+                {
+                    Agents[i].jutalom = true;
+                    //MessageBox.Show(Agents[i].name);
+                }
+            }
+            dataGridView1.Refresh();
         }
     }
 }
