@@ -26,6 +26,7 @@ namespace Homeoffice_Decider
 
         private void ugynokadatfeltoltes()
         {
+            Agents.Clear();
             Ugynokok = context.Ugynokok.ToList();
             foreach (var u in Ugynokok)
             {
@@ -70,6 +71,24 @@ namespace Homeoffice_Decider
                 {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                 }
+            }
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked)
+            {
+                for (int i = 0; i < Agents.Count; i++)
+                {
+                    if (Agents[i].rank == "Vezérigazgató" || Agents[i].rank == "Regionális vezető")
+                    {
+                        Agents.RemoveAt(i);
+                    }
+                }
+            }
+            else
+            {
+                ugynokadatfeltoltes();
             }
         }
     }
