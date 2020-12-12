@@ -107,6 +107,7 @@
             this.checkBox2.TabIndex = 8;
             this.checkBox2.Text = "Minimum 320 óra";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // Form1
             // 

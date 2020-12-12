@@ -16,6 +16,7 @@ namespace Homeoffice_Decider
         UgynokokEntities1 context = new UgynokokEntities1();
         List<Ugynokok> Ugynokok;
         BindingList<Agent> Agents = new BindingList<Agent>();
+        Szures szuro = Szures.semmire;
         public Form1()
         {
             InitializeComponent();
@@ -79,7 +80,6 @@ namespace Homeoffice_Decider
                 if (sorrend < Convert.ToInt32(textBox1.Text))
                 {
                     Agents[i].jutalom = true;
-                    //MessageBox.Show(Agents[i].name);
                 }
             }
             dataGridView1.Refresh();
@@ -105,9 +105,26 @@ namespace Homeoffice_Decider
             }
         }
 
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        private void szures()
         {
-            if (checkBox1.Checked)
+            if (checkBox1.Checked && checkBox2.Checked)
+            {
+                szuro = Szures.mindkettore;
+            }
+            if (!checkBox1.Checked && checkBox2.Checked)
+            {
+                szuro = Szures.oraszamra;
+            }
+            if (checkBox1.Checked && !checkBox2.Checked)
+            {
+                szuro = Szures.poziciora;
+            }
+            if (!checkBox1.Checked && !checkBox2.Checked)
+            {
+                szuro = Szures.semmire;
+            }
+
+            if (szuro == Szures.poziciora)
             {
                 for (int i = 0; i < Agents.Count; i++)
                 {
@@ -117,16 +134,52 @@ namespace Homeoffice_Decider
                     }
                 }
             }
-            else
+
+            if (szuro == Szures.oraszamra)
+            {
+                for (int i = 0; i < Agents.Count; i++)
+                {
+                    if (Agents[i].h1_hours + Agents[i].h2_hours + Agents[i].h3_hours<320)
+                    {
+                        Agents.RemoveAt(i);
+                    }
+                }
+            }
+
+            if (szuro == Szures.mindkettore)
+            {
+                for (int i = 0; i < Agents.Count; i++)
+                {
+                    if ((Agents[i].h1_hours + Agents[i].h2_hours + Agents[i].h3_hours) < 320
+                        || Agents[i].rank == "Vezérigazgató" || Agents[i].rank == "Regionális vezető")
+                    {
+                        Agents.RemoveAt(i);
+                    }
+                }
+            }
+
+            if (szuro == Szures.semmire)
             {
                 ugynokadatfeltoltes();
-                jutalomkiosztas();
             }
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            ugynokadatfeltoltes();
+            szures();
+        }
+
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            ugynokadatfeltoltes();
+            szures();
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
             jutalomkiosztas();
         }
+
     }
 }
