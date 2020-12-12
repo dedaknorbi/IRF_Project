@@ -63,6 +63,28 @@ namespace Homeoffice_Decider
             }
         }
 
+        private void jutalomkiosztas()
+        {
+            for (int i = 0; i < Agents.Count; i++)
+            {
+                Agents[i].jutalom = false;
+                int sorrend = 0;
+                for (int j = 0; j < Agents.Count; j++)
+                {
+                    if (Agents[i].efficiency < Agents[j].efficiency)
+                    {
+                        sorrend++;
+                    }
+                }
+                if (sorrend < Convert.ToInt32(textBox1.Text))
+                {
+                    Agents[i].jutalom = true;
+                    //MessageBox.Show(Agents[i].name);
+                }
+            }
+            dataGridView1.Refresh();
+        }
+
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             /*for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
@@ -85,7 +107,7 @@ namespace Homeoffice_Decider
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (!checkBox1.Checked)
+            if (checkBox1.Checked)
             {
                 for (int i = 0; i < Agents.Count; i++)
                 {
@@ -98,29 +120,13 @@ namespace Homeoffice_Decider
             else
             {
                 ugynokadatfeltoltes();
+                jutalomkiosztas();
             }
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Agents.Count; i++)
-            {
-                Agents[i].jutalom = false;
-                int sorrend = 0;
-                for (int j = 0; j < Agents.Count; j++)
-                {
-                    if (Agents[i].efficiency < Agents[j].efficiency)
-                    {
-                        sorrend++;
-                    }      
-                }
-                if (sorrend < Convert.ToInt32(textBox1.Text))
-                {
-                    Agents[i].jutalom = true;
-                    //MessageBox.Show(Agents[i].name);
-                }
-            }
-            dataGridView1.Refresh();
+            jutalomkiosztas();
         }
     }
 }
