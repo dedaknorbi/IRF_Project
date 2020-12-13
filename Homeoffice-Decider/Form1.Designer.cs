@@ -35,6 +35,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 68);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1216, 501);
+            this.dataGridView1.Size = new System.Drawing.Size(1216, 348);
             this.dataGridView1.TabIndex = 1;
             // 
             // checkBox1
@@ -103,17 +104,25 @@
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBox2.Location = new System.Drawing.Point(342, 41);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(142, 22);
+            this.checkBox2.Size = new System.Drawing.Size(211, 22);
             this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "Minimum 320 óra";
+            this.checkBox2.Text = "Minimum 320 óra összesen";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(12, 422);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(325, 271);
+            this.panel1.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 581);
+            this.ClientSize = new System.Drawing.Size(1247, 855);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
@@ -138,6 +147,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

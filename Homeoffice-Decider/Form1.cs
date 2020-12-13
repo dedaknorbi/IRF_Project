@@ -25,6 +25,7 @@ namespace Homeoffice_Decider
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
         }
 
+
         private void ugynokadatfeltoltes()
         {
             Agents.Clear();
