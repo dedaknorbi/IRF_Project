@@ -17,14 +17,35 @@ namespace Homeoffice_Decider
         List<Ugynokok> Ugynokok;
         BindingList<Agent> Agents = new BindingList<Agent>();
         Szures szuro = Szures.semmire;
+
+        private List<Tengely> _balls = new List<Tengely>();
+
+        private Tengelykeszito _factory;
+        public Tengelykeszito Factory
+        {
+            get { return _factory; }
+            set { _factory = value; }
+        }
+
         public Form1()
         {
             InitializeComponent();
             ugynokadatfeltoltes();
             dataGridView1.DataSource = Agents;
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
+            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
+            
         }
 
+        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            Factory = new Tengelykeszito();
+            var ball = Factory.CreateNew();
+            _balls.Add(ball);
+            ball.Left = panel1.Top;
+            ball.Top = panel1.Left;
+            Controls.Add(ball);
+        }
 
         private void ugynokadatfeltoltes()
         {

@@ -78,6 +78,7 @@
     <Compile Include="Entitites\Tengely.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entitites\Tengelykeszito.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

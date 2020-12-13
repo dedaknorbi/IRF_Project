@@ -15,10 +15,10 @@ namespace Homeoffice_Decider.Entitites
             AutoSize = false;
             Width = 50;
             Height = Width;
-            Paint += Ball_Paint;
+            Paint += Tengely_Paint;
         }
 
-        private void Ball_Paint(object sender, PaintEventArgs e)
+        private void Tengely_Paint(object sender, PaintEventArgs e)
         {
             DrawImage(e.Graphics);
         }
@@ -28,9 +28,5 @@ namespace Homeoffice_Decider.Entitites
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
 
-        public void MoveBall()
-        {
-            Left += 1;
-        }
     }
 }
