@@ -74,6 +74,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entitites\Agent.cs" />
+    <Compile Include="Entitites\Diagram.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entitites\Diagramkeszito.cs" />
     <Compile Include="Entitites\Szures.cs" />
     <Compile Include="Entitites\Tengely.cs">
       <SubType>Component</SubType>

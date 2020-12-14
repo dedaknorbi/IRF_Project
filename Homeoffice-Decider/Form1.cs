@@ -24,6 +24,12 @@ namespace Homeoffice_Decider
             get { return _koordinatatabla; }
             set { _koordinatatabla = value; }
         }
+        private Diagramkeszito _vonaldiagram;
+        public Diagramkeszito Vonaldiagram
+        {
+            get { return _vonaldiagram; }
+            set { _vonaldiagram = value; }
+        }
 
         public Form1()
         {
@@ -33,12 +39,18 @@ namespace Homeoffice_Decider
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
             dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
             Koordinatatabla = new Tengelykeszito();
+            Vonaldiagram = new Diagramkeszito();
         }
 
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            int y1 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value);
+            int y2 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[5].Value);
+            int y3 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[7].Value);
             var tengely = Koordinatatabla.CreateNew();
             panel1.Controls.Add(tengely);
+            var diagram = Vonaldiagram.CreateNew(y1,y2,y3);
+            panel1.Controls.Add(diagram);
         }
 
         private void ugynokadatfeltoltes()

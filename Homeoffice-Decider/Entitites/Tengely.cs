@@ -27,7 +27,6 @@ namespace Homeoffice_Decider.Entitites
         {
             g.DrawLine(new Pen(Color.Black, 3), 0, 0, 0, 300);
             g.DrawLine(new Pen(Color.Black, 4), 0, 300, 300, 300);
-
         }
 
     }
