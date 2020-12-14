@@ -18,39 +18,23 @@ namespace Homeoffice_Decider
         BindingList<Agent> Agents = new BindingList<Agent>();
         Szures szuro = Szures.semmire;
 
-        private Tengelykeszito _koordinatatabla;
-        public Tengelykeszito Koordinatatabla
-        {
-            get { return _koordinatatabla; }
-            set { _koordinatatabla = value; }
-        }
+        private Diagram _nextDiagram;
         private Diagramkeszito _vonaldiagram;
         public Diagramkeszito Vonaldiagram
         {
             get { return _vonaldiagram; }
-            set { _vonaldiagram = value; }
+            set { _vonaldiagram = value;
+                DisplayNext();
+            }
         }
 
         public Form1()
         {
             InitializeComponent();
             ugynokadatfeltoltes();
-            dataGridView1.DataSource = Agents;
-            this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
-            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
-            Koordinatatabla = new Tengelykeszito();
+            tablazatformazas();
+            dataGridView1.CurrentCell=dataGridView1[0,0];
             Vonaldiagram = new Diagramkeszito();
-        }
-
-        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            int y1 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value);
-            int y2 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[5].Value);
-            int y3 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[7].Value);
-            var tengely = Koordinatatabla.CreateNew();
-            panel1.Controls.Add(tengely);
-            var diagram = Vonaldiagram.CreateNew(y1,y2,y3);
-            panel1.Controls.Add(diagram);
         }
 
         private void ugynokadatfeltoltes()
@@ -87,7 +71,7 @@ namespace Homeoffice_Decider
                     h2_contracts = Convert.ToInt32(c2),
                     h3_hours = Convert.ToInt32(h3),
                     h3_contracts = Convert.ToInt32(c3),
-                    efficiency = Math.Round((h1 + h2 + h3)/100+((c1+c2+c3)/(h1+h2+h3))*100,2)
+                    efficiency = Math.Round((h1 + h2 + h3)/100+(c1+c2+c3),2)
                 });
             }
         }
@@ -115,14 +99,6 @@ namespace Homeoffice_Decider
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            /*for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
-            {
-                if (Convert.ToInt32(dataGridView1[4,i].Value)==0)
-                {
-                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                }
-                
-            }*/
             for (int i = 0; i < Agents.Count; i++)
             {
                 dataGridView1.Rows[i].DefaultCellStyle.BackColor = DefaultBackColor;
@@ -204,5 +180,51 @@ namespace Homeoffice_Decider
             jutalomkiosztas();
         }
 
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Vonaldiagram = new Diagramkeszito();
+        }
+        private void DisplayNext()
+        {
+            decimal y1 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value)
+                + Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value) / 100;
+            decimal y2 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[5].Value)
+                + Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value) / 100;
+            decimal y3 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[7].Value)
+                + Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[6].Value) / 100;
+            if (_nextDiagram !=null)
+            {
+                panel1.Controls.Remove(_nextDiagram);
+            }
+            _nextDiagram = Vonaldiagram.CreateNew(y1, y2, y3);
+            panel1.Controls.Add(_nextDiagram);
+        }
+        private void tablazatformazas()
+        {
+            dataGridView1.DataSource = Agents;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Columns[0].HeaderText = "Név";
+            dataGridView1.Columns[1].HeaderText = "Beosztás";
+            dataGridView1.Columns[2].HeaderText = "1. hónap óraszám";
+            dataGridView1.Columns[3].HeaderText = "2. hónap szerződések";
+            dataGridView1.Columns[4].HeaderText = "2. hónap óraszám";
+            dataGridView1.Columns[5].HeaderText = "2. hónap szerződések";
+            dataGridView1.Columns[6].HeaderText = "3. hónap óraszám";
+            dataGridView1.Columns[7].HeaderText = "3. hónap szerződések";
+            dataGridView1.Columns[8].HeaderText = "Hatékonysági mutató";
+            dataGridView1.Columns[9].HeaderText = "Jutalom";
+            dataGridView1.Columns[1].Width = 95;
+            dataGridView1.Columns[2].Width = 60;
+            dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].Width = 60;
+            dataGridView1.Columns[5].Width = 70;
+            dataGridView1.Columns[6].Width = 60;
+            dataGridView1.Columns[7].Width = 70;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].Width = 55;
+            this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
+        }
     }
 }

@@ -8,9 +8,9 @@ namespace Homeoffice_Decider.Entitites
 {
     public class Diagramkeszito
     {
-        public Diagram CreateNew(int y1, int y2, int y3)
+        public Diagram CreateNew(decimal y1, decimal y2, decimal y3)
         {
-            return new Diagram(y1,y2,y3);
+            return new Diagram(y1, y2, y3);
         }
     }
 }
