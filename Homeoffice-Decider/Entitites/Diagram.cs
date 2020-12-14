@@ -10,7 +10,7 @@ namespace Homeoffice_Decider.Entitites
 {
     public class Diagram : Label
     {
-        int a=0,b=0,c=0;
+        int a,b,c;
         public Diagram(int y1,int y2,int y3)
         {
             a = y1;b = y2;c = y3;
@@ -18,19 +18,19 @@ namespace Homeoffice_Decider.Entitites
             Width = 10;
             Height = Width;
             Paint += Diagram_Paint;
-            MessageBox.Show("a");
+           // MessageBox.Show("a");
 
         }
 
         private void Diagram_Paint(object sender, PaintEventArgs e)
         {
-            MessageBox.Show("b");
+            //MessageBox.Show("b");
             DrawImage(e.Graphics);
         }
 
         protected void DrawImage(Graphics g)
         {
-            MessageBox.Show("c");
+            //MessageBox.Show("c");
             g.DrawLine(new Pen(Color.Blue, 3), 75, a, 150, b);
             g.DrawLine(new Pen(Color.Blue, 4), 150, b, 225, c);
 

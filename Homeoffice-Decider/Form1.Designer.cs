@@ -36,9 +36,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -124,14 +124,14 @@
             this.panel1.Size = new System.Drawing.Size(300, 300);
             this.panel1.TabIndex = 9;
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(50, 280);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "1. hónap";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(200, 280);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "3. hónap";
             // 
             // label4
             // 
@@ -142,14 +142,14 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "2.hónap";
             // 
-            // label5
+            // label3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(200, 280);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "3. hónap";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(50, 280);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "1. hónap";
             // 
             // Form1
             // 
