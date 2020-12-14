@@ -18,7 +18,6 @@ namespace Homeoffice_Decider.Entitites
             Width = 300;
             Height = Width;
             Paint += Diagram_Paint;
-
         }
 
         private void Diagram_Paint(object sender, PaintEventArgs e)
@@ -35,7 +34,9 @@ namespace Homeoffice_Decider.Entitites
             g.DrawLine(new Pen(Color.Gray, 3), 0, 180, 5, 180);
             g.DrawLine(new Pen(Color.Gray, 3), 0, 120, 5, 120);
             g.DrawLine(new Pen(Color.Gray, 3), 0, 60, 5, 60);
-
+            g.DrawLine(new Pen(Color.Gray, 3), 75, 300, 75, 295);
+            g.DrawLine(new Pen(Color.Gray, 3), 150, 300, 150, 295);
+            g.DrawLine(new Pen(Color.Gray, 3), 225, 300, 225, 295);
 
             g.DrawLine(new Pen(Color.Blue, 3), 75, 300-a, 150, 300-b);
             g.DrawLine(new Pen(Color.Blue, 3), 150, 300-b, 225, 300-c);

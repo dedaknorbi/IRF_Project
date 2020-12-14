@@ -213,7 +213,7 @@ namespace Homeoffice_Decider
             dataGridView1.Columns[5].HeaderText = "2. hónap szerződések";
             dataGridView1.Columns[6].HeaderText = "3. hónap óraszám";
             dataGridView1.Columns[7].HeaderText = "3. hónap szerződések";
-            dataGridView1.Columns[8].HeaderText = "Hatékonysági mutató";
+            dataGridView1.Columns[8].HeaderText = "Összesített hatékonysági mutató";
             dataGridView1.Columns[9].HeaderText = "Jutalom";
             dataGridView1.Columns[1].Width = 95;
             dataGridView1.Columns[2].Width = 60;
