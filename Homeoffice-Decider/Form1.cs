@@ -18,13 +18,11 @@ namespace Homeoffice_Decider
         BindingList<Agent> Agents = new BindingList<Agent>();
         Szures szuro = Szures.semmire;
 
-        private List<Tengely> _balls = new List<Tengely>();
-
-        private Tengelykeszito _factory;
-        public Tengelykeszito Factory
+        private Tengelykeszito _koordinatatabla;
+        public Tengelykeszito Koordinatatabla
         {
-            get { return _factory; }
-            set { _factory = value; }
+            get { return _koordinatatabla; }
+            set { _koordinatatabla = value; }
         }
 
         public Form1()
@@ -34,17 +32,13 @@ namespace Homeoffice_Decider
             dataGridView1.DataSource = Agents;
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
             dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
-            
+            Koordinatatabla = new Tengelykeszito();
         }
 
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            Factory = new Tengelykeszito();
-            var ball = Factory.CreateNew();
-            _balls.Add(ball);
-            ball.Left = panel1.Top;
-            ball.Top = panel1.Left;
-            Controls.Add(ball);
+            var tengely = Koordinatatabla.CreateNew();
+            panel1.Controls.Add(tengely);
         }
 
         private void ugynokadatfeltoltes()

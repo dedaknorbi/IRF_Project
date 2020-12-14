@@ -13,7 +13,7 @@ namespace Homeoffice_Decider.Entitites
         public Tengely()
         {
             AutoSize = false;
-            Width = 50;
+            Width = 300;
             Height = Width;
             Paint += Tengely_Paint;
         }
@@ -25,7 +25,9 @@ namespace Homeoffice_Decider.Entitites
 
         protected void DrawImage(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
+            g.DrawLine(new Pen(Color.Black, 3), 0, 0, 0, 300);
+            g.DrawLine(new Pen(Color.Black, 4), 0, 300, 300, 300);
+
         }
 
     }
