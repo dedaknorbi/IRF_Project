@@ -214,9 +214,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.Location = new System.Drawing.Point(839, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(268, 36);
+            this.label6.Size = new System.Drawing.Size(272, 36);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Kattintson egy sorra az adott személy\r\nhavi teljesítményeinek megjelenítéséhez";
+            this.label6.Text = "Kattintson egy sorra az adott személy\r\nhavi hatékonyságának megjelenítéséhez";
             // 
             // Form1
             // 
