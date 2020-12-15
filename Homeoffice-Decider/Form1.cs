@@ -15,9 +15,8 @@ namespace Homeoffice_Decider
     {
         UgynokokEntities1 context = new UgynokokEntities1();
         List<Ugynokok> Ugynokok;
-        List<Agent> Agents = new List<Agent>();
+        BindingList<Agent> Agents = new BindingList<Agent>();
         Szures szuro = Szures.semmire;
-        List<Agent> Torlendo = new List<Agent>();
 
         private Diagram _nextDiagram;
         private Diagramkeszito _vonaldiagram;
@@ -77,6 +76,11 @@ namespace Homeoffice_Decider
             }
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            jutalomkiosztas();
+        }
+
         private void jutalomkiosztas()
         {
             for (int i = 0; i < Agents.Count; i++)
@@ -108,6 +112,18 @@ namespace Homeoffice_Decider
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
             }
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            ugynokadatfeltoltes();
+            szures();
+        }
+
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            ugynokadatfeltoltes();
+            szures();
         }
 
         private void szures()
@@ -155,30 +171,13 @@ namespace Homeoffice_Decider
             {
                 for (int i = 0; i < Agents.Count; i++)
                 {
-                    if ((Agents[i].h1_hours + Agents[i].h2_hours + Agents[i].h3_hours) < 320
+                    if ((Agents[i].h1_hours + Agents[i].h2_hours + Agents[i].h3_hours) < 320 
                         || Agents[i].rank == "Vezérigazgató" || Agents[i].rank == "Regionális vezető")
                     {
                         Agents.RemoveAt(i);
                     }
                 }
             }
-        }
-
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            ugynokadatfeltoltes();
-            szures();
-        }
-
-        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            ugynokadatfeltoltes();
-            szures();
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            jutalomkiosztas();
         }
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
