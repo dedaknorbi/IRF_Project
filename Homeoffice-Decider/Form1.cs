@@ -166,13 +166,13 @@ namespace Homeoffice_Decider
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            //ugynokadatfeltoltes();
+            ugynokadatfeltoltes();
             szures();
         }
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            //ugynokadatfeltoltes();
+            ugynokadatfeltoltes();
             szures();
         }
 
@@ -185,6 +185,7 @@ namespace Homeoffice_Decider
         {
             Vonaldiagram = new Diagramkeszito();
         }
+
         private void DisplayNext()
         {
             decimal y1 = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value)
@@ -200,6 +201,7 @@ namespace Homeoffice_Decider
             _nextDiagram = Vonaldiagram.CreateNew(y1, y2, y3);
             panel1.Controls.Add(_nextDiagram);
         }
+
         private void tablazatformazas()
         {
             dataGridView1.DataSource = Agents;
@@ -226,34 +228,6 @@ namespace Homeoffice_Decider
             dataGridView1.Columns[8].Width = 75;
             dataGridView1.Columns[9].Width = 55;
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            foreach (var a in Agents)
-            {
-                if (a.h1_hours==0 && a.h2_hours==0 && a.h3_hours==0)
-                {
-                    Torlendo.Add(new Agent()
-                    {
-                        name = a.name
-                        /*rank = a.rank,
-                        h1_hours = a.h1_hours,
-                        h1_contracts = a.h1_contracts,
-                        h2_hours = a.h2_hours,
-                        h2_contracts = a.h2_contracts,
-                        h3_hours = a.h2_hours,
-                        h3_contracts = a.h2_contracts*/
-                    });
-                }
-            }
-            foreach (var a in Agents)
-            {
-                foreach (var t in Torlendo)
-                {
-
-                }
-            }
         }
     }
 }
