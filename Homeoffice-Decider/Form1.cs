@@ -74,6 +74,14 @@ namespace Homeoffice_Decider
                     h3_contracts = Convert.ToInt32(c3),
                     efficiency = Math.Round((h1 + h2 + h3)/100+(c1+c2+c3),2)
                 });
+
+                if (h1 == 0 && h2 == 0 && h3 == 0)
+                {
+                    Uressorok.Add(new Agent()
+                    {
+                        name = u.nev
+                    });
+                }
             }
         }
 
@@ -195,15 +203,6 @@ namespace Homeoffice_Decider
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Agents.Count; i++)
-            {
-                if (Agents[i].h1_hours == 0 && Agents[i].h2_hours == 0 && Agents[i].h3_hours == 0)
-                {
-                    Uressorok.Add(new Agent(){
-                        name = Agents[i].name
-                    });
-                }
-            }
             for (int i = 0; i < Ugynokok.Count; i++)
             {
                 for (int j = 0; j < Uressorok.Count; j++)
@@ -215,7 +214,6 @@ namespace Homeoffice_Decider
                     }
                 }
             }
-            ugynokadatfeltoltes();
             button3.BackColor = Color.LightGray;
             button3.Text = "Üres sorok törölve";
             button3.Enabled = false;
