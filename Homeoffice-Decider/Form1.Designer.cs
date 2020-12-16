@@ -45,6 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -218,11 +219,22 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Kattintson egy sorra az adott személy\r\nhavi mutatóinak megjelenítéséhez";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(636, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(112, 23);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Üres sorok törlése";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 436);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox2);
@@ -261,6 +273,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button3;
     }
 }
 

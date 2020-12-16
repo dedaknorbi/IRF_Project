@@ -16,6 +16,7 @@ namespace Homeoffice_Decider
         UgynokokEntities1 context = new UgynokokEntities1();
         List<Ugynokok> Ugynokok;
         BindingList<Agent> Agents = new BindingList<Agent>();
+        BindingList<Agent> Uressorok = new BindingList<Agent>();
         Szures szuro = Szures.semmire;
 
         private Diagram _nextDiagram;
@@ -31,6 +32,7 @@ namespace Homeoffice_Decider
         public Form1()
         {
             InitializeComponent();
+            Ugynokok = context.Ugynokok.ToList();
             ugynokadatfeltoltes();
             tablazatformazas();
             dataGridView1.CurrentCell=dataGridView1[0,0];
@@ -40,7 +42,6 @@ namespace Homeoffice_Decider
         private void ugynokadatfeltoltes()
         {
             Agents.Clear();
-            Ugynokok = context.Ugynokok.ToList();
             foreach (var u in Ugynokok)
             {
                 decimal h1= Convert.ToDecimal((from x in context.Munkak
@@ -171,10 +172,10 @@ namespace Homeoffice_Decider
             {
                 for (int i = 0; i < Agents.Count; i++)
                 {
-                    if ((Agents[i].h1_hours + Agents[i].h2_hours + Agents[i].h3_hours) < 320 
-                        || Agents[i].rank == "Vezérigazgató" || Agents[i].rank == "Regionális vezető")
+                    if ((Agents[i].h1_hours + Agents[i].h2_hours + Agents[i].h3_hours) < 320 || Agents[i].rank == "Vezérigazgató" || Agents[i].rank == "Regionális vezető")
                     {
                         Agents.RemoveAt(i);
+                        i--;
                     }
                 }
             }
@@ -227,6 +228,39 @@ namespace Homeoffice_Decider
             dataGridView1.Columns[8].Width = 75;
             dataGridView1.Columns[9].Width = 55;
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Agents.Count; i++)
+            {
+                if (Agents[i].h1_hours == 0 && Agents[i].h2_hours == 0 && Agents[i].h3_hours == 0)
+                {
+                    Uressorok.Add(new Agent(){
+                        name = Agents[i].name
+                    });
+                }
+            }
+            for (int i = 0; i < Agents.Count; i++)
+            {
+                for (int j = 0; j < Uressorok.Count; j++)
+                {
+                    if (Agents[i].name==Uressorok[j].name)
+                    {
+                        Agents.RemoveAt(i);
+                    }
+                }
+            }
+            for (int i = 0; i < Ugynokok.Count; i++)
+            {
+                for (int j = 0; j < Uressorok.Count; j++)
+                {
+                    if (Ugynokok[i].nev == Uressorok[j].name)
+                    {
+                        Ugynokok.RemoveAt(i);
+                    }
+                }
+            }
         }
     }
 }
