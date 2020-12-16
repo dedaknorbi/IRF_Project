@@ -3,6 +3,7 @@ A program gombnyomásra kiválasztja nekünk a listából a valamennyi legjobb m
 Eredetileg arra lett kitalálva, hogy ennek segítségével lehessen eldönteni azt, hogy ki dolgozzon homeofficeban, de ettől elvonatkoztatva egy egyszerű teljesítménymérő alkalmazásként is tekinthető.
 Ezeket a feladatokat kellett megvalósítanom:
 -adatbázisból beolvasás: az adatbázisból LINQ-val listába olvasok be
--listából történő törlés: ez a képen látható szűrő funkciójú checkbox-okkal történik, amikor is az adott feltételek függvényében történik a lista bizonyos elemeinek törlése
+-listából történő törlés: ez két helyen látható: 	1) az üres sorok törlése funkciónál, ahol a törlendő elemek listája és az eredeti lista elemei összehasonlítása alapján történik a törlés
+							2) a szűrő funkciójú checkboxoknál, amikor is az adott feltételek függvényében történik a lista bizonyos elemeinek törlése
 -diagram rajzolás: itt a datagridview-ben kijelölt személy teljesítményét mutatja meg egy vonaldiagram a három hónapra visszamenőleg
 -enumerációk: enumerációkat a szűrőfeltételeknél alkalmaztam. A két checkbox kombinációja kiad valamilyen enumerációs értéket, amit a törlésfunkció fog vizsgálni, és ennek függvényében fog a listából elemeket törölni. 
